@@ -1,4 +1,6 @@
 # openclaw-prd-writer
+![openclaw-prd-writer](https://raw.githubusercontent.com/bkochavy/openclaw-prd-writer/main/.github/social-preview.png)
+
 
 > Turn a rough idea into a build-ready spec through a structured agent conversation.
 
