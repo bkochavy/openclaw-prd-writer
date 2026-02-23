@@ -2,5 +2,5 @@
 - Initial public release
 - 5-phase pipeline: Understand → Plan → Spec → Handoff
 - Two approval gates (after Master Plan, after PRD)
-- Channel-agnostic (works on Telegram, Discord, iMessage)
-- Compatible with openclaw-coding-loops for automated handoff
+- Channel-agnostic (works on Telegram, Discord, iMessage, Signal)
+- Compatible with openclaw-build for automated handoff

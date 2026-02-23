@@ -7,9 +7,17 @@
 
 You have a rough idea. You tell your agent. It asks the right questions, drafts an architecture plan, writes a full PRD to disk, and hands off to a coding agent — all with two approval gates so nothing gets built without your say-so.
 
-This is a skill for [OpenClaw](https://openclaw.ai), the self-hosted AI agent platform. It works across any channel OpenClaw supports: Telegram, Discord, iMessage, and more.
+This is a skill for [OpenClaw](https://openclaw.ai), the self-hosted AI agent platform. It works on OpenClaw channels including Telegram, Discord, iMessage, and Signal.
 
 ## Install
+
+Install OpenClaw first:
+
+```bash
+curl -fsSL https://openclaw.ai/install.sh | bash
+```
+
+Then install this skill:
 
 ```bash
 git clone https://github.com/bkochavy/openclaw-prd-writer.git ~/.openclaw/workspace/skills/openclaw-prd-writer
@@ -23,7 +31,7 @@ Say something like *"spec this"*, *"write a PRD for X"*, *"plan this feature"*, 
 
 It starts by restating your idea and asking 3-7 clarifying questions as tappable polls, so you pick options instead of typing paragraphs. Once it understands what you want, it proposes a lightweight Master Plan — the architecture and task breakdown at a glance. You approve, tweak, or scrap it.
 
-After you approve the plan, the agent writes a detailed PRD to `projects/[name]/PRD.md` — specific enough that a coding agent can build from it with zero guesswork. You review that too. Two gates, two thumbs-up, then it hands off to [openclaw-coding-loops](https://github.com/bkochavy/openclaw-coding-loops) to start building.
+After you approve the plan, the agent writes a detailed PRD to `projects/[name]/PRD.md` — specific enough that a coding agent can build from it with zero guesswork. You review that too. Two gates, two thumbs-up, then it hands off to `openclaw-build` to start building.
 
 The PRD file is yours. It's a Markdown file on disk, portable to any coding agent — Codex, Claude Code, or whatever comes next.
 
@@ -50,7 +58,7 @@ IDEA → Understand → Plan → [Gate 1] → Spec → [Gate 2] → Handoff
 - **Understand** — Restate the idea, identify unknowns, ask 3-7 clarifying questions via polls/buttons
 - **Plan** — Generate a Master Plan (architecture + task groups + success criteria). Await explicit approval before proceeding
 - **Spec** — Write a detailed PRD to `projects/[name]/PRD.md` using `references/prd-template.md`. Await explicit approval
-- **Handoff** — Set up and launch [openclaw-coding-loops](https://github.com/bkochavy/openclaw-coding-loops), or let the user take it from here
+- **Handoff** — Set up and launch `openclaw-build`, or let the user take it from here
 
 ### Non-negotiables
 
@@ -67,8 +75,11 @@ When driving a PRD interview from a different thread than where it was triggered
 ### Requirements
 
 - OpenClaw instance with any configured channel
+- OpenClaw installed via `curl -fsSL https://openclaw.ai/install.sh | bash`
+- OpenClaw config present at `~/.openclaw/openclaw.json`
+- OpenClaw gateway reachable at `http://127.0.0.1:18789`
 - `projects/` directory writable in the workspace
-- [openclaw-coding-loops](https://github.com/bkochavy/openclaw-coding-loops) (optional, for automated handoff)
+- `openclaw-build` skill at `~/.openclaw/workspace/skills/openclaw-build` (optional, for automated handoff)
 
 ### Project structure
 
