@@ -5,9 +5,9 @@
 
 ![openclaw-prd-writer](https://raw.githubusercontent.com/bkochavy/openclaw-prd-writer/main/.github/social-preview.png)
 
-You have a rough idea. You tell your agent. It asks the right questions, drafts an architecture plan, writes a full PRD to disk, and hands off to a coding agent — all with two approval gates so nothing gets built without your say-so.
+You have a rough idea. You tell your agent. It asks the right questions, drafts an architecture plan, and writes a full PRD to disk — with two approval gates so nothing gets committed without your say-so.
 
-This is a skill for [OpenClaw](https://openclaw.ai), the self-hosted AI agent platform. It works on OpenClaw channels including Telegram, Discord, iMessage, and Signal.
+This is a standalone spec skill for [OpenClaw](https://openclaw.ai), the self-hosted AI agent platform. It works on any OpenClaw channel: Telegram, Discord, iMessage, Signal, and more. For the full spec-to-build pipeline, see [openclaw-build](https://github.com/bkochavy/openclaw-build).
 
 ## Install
 
@@ -24,6 +24,14 @@ git clone https://github.com/bkochavy/openclaw-prd-writer.git ~/.openclaw/worksp
 ```
 
 Or just tell your agent: *"install the prd-writer skill from github.com/bkochavy/openclaw-prd-writer"*
+
+## Disambiguation: prd-writer vs. openclaw-build
+
+**`openclaw-prd-writer`** is the **standalone spec phase** — structured interview, Master Plan, and PRD file. It stops there. Use it when you want a clean, portable PRD without triggering a build.
+
+**[`openclaw-build`](https://github.com/bkochavy/openclaw-build)** is the **full pipeline**: spec interview → approval gates → automated build loop. It bundles `openclaw-prd-writer` internally, so installing `openclaw-build` gives you everything.
+
+> If you're not sure which to install: start with `openclaw-prd-writer` to get a feel for the interview flow. When you're ready to automate the build step, switch to `openclaw-build`.
 
 ## 👤 For Humans
 
@@ -79,7 +87,7 @@ When driving a PRD interview from a different thread than where it was triggered
 - OpenClaw config present at `~/.openclaw/openclaw.json`
 - OpenClaw gateway reachable at `http://127.0.0.1:18789`
 - `projects/` directory writable in the workspace
-- `openclaw-build` skill at `~/.openclaw/workspace/skills/openclaw-build` (optional, for automated handoff)
+- [`openclaw-build`](https://github.com/bkochavy/openclaw-build) at `~/.openclaw/workspace/skills/openclaw-build` — optional; only needed if you want automated build handoff after PRD approval
 
 ### Project structure
 
